@@ -4,8 +4,6 @@ Static website for [tyrox.net](https://tyrox.net).
 
 ## GitHub Pages
 
-This repo is served from the `main` branch root (`index.html`, `CNAME`, `.nojekyll`).
-
 Custom domain: **tyrox.net**
 
 ## Local preview
