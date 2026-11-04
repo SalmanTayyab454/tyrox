@@ -2038,8 +2038,8 @@ body.is-ready .hero-controls {
   }
 
   .hero-split {
-    align-items: flex-end;
-    padding: 4.75rem 0 5.75rem;
+    align-items: center;
+    padding: 4.5rem 0 4.75rem;
   }
 
   .hero-panel {
