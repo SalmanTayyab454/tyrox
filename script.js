@@ -451,7 +451,7 @@
     img.addEventListener("load", reveal, { once: true });
   });
 
-  /* ---------- Shared carousel helper ---------- */
+  /* ---------- Shared carousel helper (native swipe + snap) ---------- */
   const createCarousel = ({
     trackSelector,
     sliderSelector,
@@ -468,14 +468,25 @@
     if (!track || !slider) return;
 
     let page = 0;
+    let dotCount = -1;
+    let scrollLock = false;
     const cards = () => [...track.querySelectorAll(cardSelector)];
-    const gap = 20;
+
+    const gapPx = () => {
+      const style = getComputedStyle(track);
+      return parseFloat(style.columnGap || style.gap) || 20;
+    };
+
+    const stepSize = () => {
+      const first = cards()[0];
+      if (!first) return slider.clientWidth;
+      return first.getBoundingClientRect().width + gapPx();
+    };
 
     const perPage = () => {
       const first = cards()[0];
       if (!first) return 1;
-      const cardWidth = first.getBoundingClientRect().width + gap;
-      return Math.max(1, Math.floor((slider.clientWidth + gap) / cardWidth));
+      return Math.max(1, Math.round((slider.clientWidth + gapPx()) / stepSize()));
     };
 
     const pageCount = () => Math.max(1, Math.ceil(cards().length / perPage()));
@@ -494,27 +505,44 @@
       }
     };
 
-    const renderDots = () => {
+    const syncDots = () => {
       if (!dots) return;
       const total = pageCount();
-      dots.innerHTML = Array.from({ length: total }, (_, i) => {
-        return `<button type="button" aria-label="Slide ${i + 1}" ${
-          i === page ? 'class="is-active"' : ""
-        }></button>`;
-      }).join("");
+      if (total !== dotCount) {
+        dotCount = total;
+        dots.innerHTML = Array.from({ length: total }, (_, i) => {
+          return `<button type="button" aria-label="Go to slide ${i + 1}"></button>`;
+        }).join("");
+        [...dots.children].forEach((dot, i) => {
+          dot.addEventListener("click", () => go(i));
+        });
+      }
       [...dots.children].forEach((dot, i) => {
-        dot.addEventListener("click", () => go(i));
+        dot.classList.toggle("is-active", i === page);
+        dot.setAttribute("aria-current", i === page ? "true" : "false");
       });
     };
 
-    const go = (nextPage) => {
+    const go = (nextPage, behavior = "smooth") => {
       const total = pageCount();
       page = Math.max(0, Math.min(total - 1, nextPage));
-      const first = cards()[0];
-      if (!first) return;
-      const step = (first.getBoundingClientRect().width + gap) * perPage();
-      track.style.transform = `translateX(${-page * step}px)`;
-      renderDots();
+      scrollLock = true;
+      slider.scrollTo({ left: page * stepSize() * perPage(), behavior });
+      syncDots();
+      updateArrows();
+      window.setTimeout(() => {
+        scrollLock = false;
+      }, behavior === "smooth" ? 450 : 0);
+    };
+
+    const syncFromScroll = () => {
+      if (scrollLock) return;
+      const step = stepSize() * perPage();
+      if (step <= 0) return;
+      const nextPage = Math.round(slider.scrollLeft / step);
+      if (nextPage === page) return;
+      page = Math.max(0, Math.min(pageCount() - 1, nextPage));
+      syncDots();
       updateArrows();
     };
 
@@ -524,8 +552,9 @@
     next?.addEventListener("click", () => {
       if (page < pageCount() - 1) go(page + 1);
     });
-    window.addEventListener("resize", () => go(Math.min(page, pageCount() - 1)));
-    go(0);
+    slider.addEventListener("scroll", syncFromScroll, { passive: true });
+    window.addEventListener("resize", () => go(Math.min(page, pageCount() - 1), "auto"));
+    go(0, "auto");
   };
 
   createCarousel({
@@ -546,10 +575,25 @@
     cardSelector: ".review-card",
   });
 
-  /* ---------- Doctor card flip (tap on touch devices) ---------- */
+  /* ---------- Doctor card flip (tap on touch devices; ignore swipes) ---------- */
   const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
   document.querySelectorAll(".doctor-card").forEach((card) => {
+    let pointerX = 0;
+    let pointerY = 0;
+    let moved = false;
+
+    card.addEventListener("pointerdown", (event) => {
+      pointerX = event.clientX;
+      pointerY = event.clientY;
+      moved = false;
+    });
+    card.addEventListener("pointermove", (event) => {
+      if (Math.abs(event.clientX - pointerX) > 10 || Math.abs(event.clientY - pointerY) > 10) {
+        moved = true;
+      }
+    });
     card.addEventListener("click", (event) => {
+      if (moved) return;
       if (event.target.closest("a, button")) return;
       if (canHover.matches) return;
       card.classList.toggle("is-flipped");

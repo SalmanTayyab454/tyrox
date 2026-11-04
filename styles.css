@@ -1108,20 +1108,33 @@ body.is-ready .hero-controls {
   align-items: center;
 }
 
-.doctor-slider {
-  overflow: hidden;
+.doctor-slider,
+.review-viewport {
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  touch-action: pan-x;
+}
+
+.doctor-slider::-webkit-scrollbar,
+.review-viewport::-webkit-scrollbar {
+  display: none;
 }
 
 .doctor-track,
 .review-track {
   display: flex;
   gap: 1.25rem;
-  transition: transform 0.65s var(--ease-out);
-  will-change: transform;
 }
 
 .doctor-card {
   flex: 0 0 min(100%, 320px);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   perspective: 1400px;
   background: transparent;
   border: 0;
@@ -1534,12 +1547,10 @@ body.is-ready .hero-controls {
   align-items: center;
 }
 
-.review-viewport {
-  overflow: hidden;
-}
-
 .review-card {
   flex: 0 0 min(100%, 340px);
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
   background: var(--white);
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -2130,6 +2141,29 @@ body.is-ready .hero-controls {
   .doctor-carousel,
   .review-carousel {
     grid-template-columns: 1fr;
+  }
+
+  .doctor-slider,
+  .review-viewport {
+    margin-inline: calc(-1 * clamp(1.25rem, 4vw, 3.5rem));
+    padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+  }
+
+  .doctor-card {
+    flex-basis: min(82vw, 300px);
+  }
+
+  .review-card {
+    flex-basis: min(84vw, 320px);
+  }
+
+  .slider-dots {
+    pointer-events: none;
+  }
+
+  .slider-dots button {
+    pointer-events: none;
+    cursor: default;
   }
 
   .map-frame {
