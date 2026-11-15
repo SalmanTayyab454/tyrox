@@ -19,4 +19,6 @@ _site/
 /vendor
 Gemfile.lock
 GODADDY-DNS.md
-images/Doctor/
+# Keep original camera dumps local; publish cropped card portraits
+images/Doctor/docHaroon.jpg
+images/Doctor/docAroosha.jpg
