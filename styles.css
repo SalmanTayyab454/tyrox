@@ -2270,7 +2270,7 @@ body.is-ready .hero-controls {
   display: grid;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   gap: clamp(1.5rem, 4vw, 3.25rem);
-  align-items: end;
+  align-items: center;
 }
 
 .doc-hero__photo {
@@ -2290,7 +2290,7 @@ body.is-ready .hero-controls {
 }
 
 .doc-hero__copy {
-  padding-bottom: clamp(0.5rem, 2vw, 1.25rem);
+  padding-block: 0;
 }
 
 .doc-hero__copy h1 {
