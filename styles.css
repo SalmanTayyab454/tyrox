@@ -2237,3 +2237,355 @@ body.is-ready .hero-controls {
     padding-inline: clamp(0.65rem, 2.5vw, 1rem);
   }
 }
+
+/* ---------- Doctor profile pages ---------- */
+.page-doctor .doc-sticky-book {
+  display: none;
+}
+
+.doc-hero {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(5.5rem, 12vw, 7rem) clamp(1.25rem, 4vw, 3.5rem) clamp(2.5rem, 5vw, 4rem);
+  overflow: hidden;
+}
+
+.doc-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 40%, rgba(211, 195, 178, 0.55), transparent 60%),
+    radial-gradient(ellipse 70% 50% at 90% 10%, rgba(155, 224, 0, 0.14), transparent 55%),
+    linear-gradient(165deg, #e8dfd2 0%, #f3eee6 38%, var(--cream) 100%);
+}
+
+.doc-hero__grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(1.5rem, 4vw, 3.25rem);
+  align-items: end;
+}
+
+.doc-hero__photo {
+  margin: 0;
+  border-radius: 0;
+  overflow: hidden;
+  aspect-ratio: 1080 / 1260;
+  max-height: min(78vh, 640px);
+  box-shadow: none;
+}
+
+.doc-hero__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.doc-hero__copy {
+  padding-bottom: clamp(0.5rem, 2vw, 1.25rem);
+}
+
+.doc-hero__copy h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1.85rem, 4.2vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+  margin: 0.35rem 0 0.65rem;
+}
+
+.doc-hero__role {
+  margin: 0;
+  font-weight: 700;
+  color: var(--forest);
+  font-size: 1.05rem;
+}
+
+.doc-hero__creds {
+  margin: 0.45rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.doc-hero__lede {
+  margin: 1.15rem 0 0;
+  max-width: 38ch;
+  color: var(--charcoal);
+  font-size: 1.05rem;
+}
+
+.doc-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.35rem;
+  margin-top: 1.5rem;
+}
+
+.doc-section {
+  padding-block: clamp(2.5rem, 5vw, 3.75rem);
+}
+
+.doc-section--soft {
+  background: rgba(247, 244, 234, 0.55);
+}
+
+.doc-section__inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+.doc-section__inner h2,
+.doc-book__inner h2,
+.doc-others__head h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 3vw, 2.1rem);
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0.25rem 0 1.15rem;
+}
+
+.doc-prose {
+  display: grid;
+  gap: 1rem;
+}
+
+.doc-prose p {
+  margin: 0;
+  color: var(--charcoal);
+  font-size: 1.02rem;
+}
+
+.doc-focus {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.doc-focus__block h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  color: var(--forest);
+  margin: 0 0 0.65rem;
+}
+
+.doc-focus__block ul,
+.doc-creds {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.doc-focus__block li,
+.doc-creds li {
+  position: relative;
+  padding-left: 1.15rem;
+  color: var(--charcoal);
+  font-size: 0.98rem;
+}
+
+.doc-focus__block li::before,
+.doc-creds li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 1px;
+  background: var(--lime-deep);
+  transform: rotate(45deg);
+}
+
+.doc-book {
+  padding-block: clamp(2.75rem, 6vw, 4rem);
+}
+
+.doc-book__inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(1.75rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 2.5rem);
+  background:
+    radial-gradient(600px 280px at 100% 0%, rgba(155, 224, 0, 0.18), transparent 55%),
+    linear-gradient(180deg, #fff 0%, #fbfaf4 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+}
+
+.doc-book__inner > p {
+  margin: 0 0 0.85rem;
+  color: var(--charcoal);
+  max-width: 52ch;
+}
+
+.doc-book__place {
+  color: var(--muted) !important;
+  font-size: 0.95rem;
+}
+
+.doc-book__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  margin-top: 1.35rem;
+}
+
+.doc-book__phone {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+
+.doc-book__phone:hover {
+  color: var(--forest);
+}
+
+.doc-others {
+  padding-block: clamp(2rem, 4vw, 3rem) clamp(3rem, 6vw, 4.5rem);
+}
+
+.doc-others__inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+}
+
+.doc-others__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.doc-others__head h2 {
+  margin: 0;
+}
+
+.doc-others__row {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.doc-other {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--charcoal);
+  transition: transform 0.3s var(--ease);
+}
+
+.doc-other:hover {
+  transform: translateY(-3px);
+}
+
+.doc-other img {
+  width: 100%;
+  aspect-ratio: 1080 / 1260;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.doc-other span {
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.doc-other small {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.doc-sticky-book {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 40;
+  padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+  background: rgba(247, 244, 234, 0.94);
+  border-top: 1px solid var(--line);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 -8px 24px rgba(0, 64, 0, 0.06);
+}
+
+.doc-sticky-book .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.page-doctor .whatsapp-float {
+  bottom: 1.1rem;
+}
+
+.doctor-card__face--back .doctor-profile-link {
+  margin-top: 0.35rem;
+  margin-bottom: 0.15rem;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 860px) {
+  .doc-hero__grid {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .doc-hero__photo {
+    max-height: none;
+    max-width: min(100%, 420px);
+    margin-inline: auto;
+  }
+
+  .doc-hero__copy {
+    text-align: center;
+    padding-bottom: 0;
+  }
+
+  .doc-hero__lede {
+    margin-inline: auto;
+  }
+
+  .doc-hero__actions {
+    justify-content: center;
+  }
+
+  .doc-others__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .page-doctor .doc-sticky-book {
+    display: block;
+  }
+
+  .page-doctor .whatsapp-float {
+    bottom: 5.25rem;
+  }
+
+  .page-doctor .footer {
+    padding-bottom: 5.5rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .doc-hero {
+    padding-top: 5rem;
+  }
+
+  .doc-book__inner {
+    border-radius: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .doc-other:hover {
+    transform: none;
+  }
+}
