@@ -1300,6 +1300,9 @@ body.is-ready .hero-controls {
   color: var(--forest);
   font-size: 1.5rem;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: background 0.25s var(--ease), transform 0.25s var(--ease);
 }
 
@@ -1308,14 +1311,8 @@ body.is-ready .hero-controls {
   transform: scale(1.05);
 }
 
-.doctor-arrow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
 .doctor-arrow[hidden] {
-  /* Keep layout space on desktop so the track doesn’t jump; never force display on mobile */
+  /* Keep layout space on desktop so the track doesn’t jump */
   visibility: hidden;
   pointer-events: none;
 }
