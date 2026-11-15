@@ -2458,6 +2458,9 @@ body.is-ready .hero-controls {
   aspect-ratio: 1080 / 1260;
   max-height: min(78vh, 640px);
   box-shadow: none;
+  /* Keep LCP photo visible immediately — never hide behind data-reveal */
+  opacity: 1;
+  transform: none;
 }
 
 .doc-hero__photo img {

@@ -496,6 +496,8 @@
   /* ---------- Lazy-load below-fold images with reveal ---------- */
   document.querySelectorAll("img[loading='lazy']").forEach((img) => {
     if (img.closest(".hero-slide")) return;
+    // Doctor profile thumbs/cards: skip blur fade (hurts LCP/CLS diagnostics)
+    if (img.closest(".doc-other, .doc-hero")) return;
     img.classList.add("lazy-img");
     const reveal = () => img.classList.add("is-lazy-shown");
     if (img.complete) {
