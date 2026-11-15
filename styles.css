@@ -1201,7 +1201,7 @@ body.is-ready .hero-controls {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  object-position: center 22%;
   transition: transform 0.75s var(--ease-out);
 }
 
