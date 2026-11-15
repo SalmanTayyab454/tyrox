@@ -1308,10 +1308,14 @@ body.is-ready .hero-controls {
   transform: scale(1.05);
 }
 
-.doctor-arrow[hidden] {
-  display: inline-flex !important;
+.doctor-arrow {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.doctor-arrow[hidden] {
+  /* Keep layout space on desktop so the track doesn’t jump; never force display on mobile */
   visibility: hidden;
   pointer-events: none;
 }
@@ -2135,8 +2139,9 @@ body.is-ready .hero-controls {
   }
 
   .doctor-arrow,
+  .doctor-arrow[hidden],
   .review-carousel .doctor-arrow {
-    display: none;
+    display: none !important;
   }
 
   .doctor-carousel,
