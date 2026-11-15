@@ -577,6 +577,21 @@
 
   /* ---------- Doctor card flip (tap on touch devices; ignore swipes) ---------- */
   const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const doctorSliderEl = document.querySelector("[data-doctor-slider]");
+  let doctorSliderScrolling = false;
+  let doctorScrollTimer = 0;
+  doctorSliderEl?.addEventListener(
+    "scroll",
+    () => {
+      doctorSliderScrolling = true;
+      window.clearTimeout(doctorScrollTimer);
+      doctorScrollTimer = window.setTimeout(() => {
+        doctorSliderScrolling = false;
+      }, 180);
+    },
+    { passive: true }
+  );
+
   document.querySelectorAll(".doctor-card").forEach((card) => {
     let pointerX = 0;
     let pointerY = 0;
@@ -593,7 +608,7 @@
       }
     });
     card.addEventListener("click", (event) => {
-      if (moved) return;
+      if (moved || doctorSliderScrolling) return;
       if (event.target.closest("a, button")) return;
       if (canHover.matches) return;
       card.classList.toggle("is-flipped");

@@ -123,6 +123,7 @@ button {
 [data-reveal].is-visible {
   opacity: 1;
   transform: translate3d(0, 0, 0);
+  will-change: auto;
 }
 
 .media-reveal {
@@ -2141,6 +2142,11 @@ body.is-ready .hero-controls {
   .doctor-carousel,
   .review-carousel {
     grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .doctors .section-head {
+    margin-bottom: 2rem;
   }
 
   .doctor-slider,
@@ -2148,12 +2154,20 @@ body.is-ready .hero-controls {
     margin-inline: calc(-1 * clamp(1.25rem, 4vw, 3.5rem));
     padding-inline: 0;
     scroll-padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+    overflow-anchor: none;
+    overscroll-behavior: contain;
+    touch-action: pan-x;
+  }
+
+  .doctor-slider {
+    min-height: 520px;
   }
 
   /* Reliable start/end gutters for overflow flex tracks (padding alone fails at the end on iOS) */
   .doctor-track,
   .review-track {
     padding-left: clamp(1.25rem, 4vw, 3.5rem);
+    align-items: stretch;
   }
 
   .doctor-track::after,
@@ -2164,6 +2178,13 @@ body.is-ready .hero-controls {
 
   .doctor-card {
     flex-basis: min(82vw, 300px);
+    min-height: 520px;
+    height: 520px;
+  }
+
+  .doctor-card__inner {
+    height: 520px;
+    min-height: 520px;
   }
 
   .review-card {
