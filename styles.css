@@ -2146,7 +2146,20 @@ body.is-ready .hero-controls {
   .doctor-slider,
   .review-viewport {
     margin-inline: calc(-1 * clamp(1.25rem, 4vw, 3.5rem));
-    padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+    padding-inline: 0;
+    scroll-padding-inline: clamp(1.25rem, 4vw, 3.5rem);
+  }
+
+  /* Reliable start/end gutters for overflow flex tracks (padding alone fails at the end on iOS) */
+  .doctor-track,
+  .review-track {
+    padding-left: clamp(1.25rem, 4vw, 3.5rem);
+  }
+
+  .doctor-track::after,
+  .review-track::after {
+    content: "";
+    flex: 0 0 clamp(1.25rem, 4vw, 3.5rem);
   }
 
   .doctor-card {
