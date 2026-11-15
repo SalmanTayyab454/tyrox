@@ -2250,7 +2250,7 @@ body.is-ready .hero-controls {
 .doc-hero {
   position: relative;
   isolation: isolate;
-  padding: clamp(5.5rem, 12vw, 7rem) clamp(1.25rem, 4vw, 3.5rem) clamp(2.5rem, 5vw, 4rem);
+  padding: 5rem clamp(1.25rem, 4vw, 3.5rem) clamp(2.5rem, 5vw, 4rem);
   overflow: hidden;
 }
 
@@ -2477,35 +2477,64 @@ body.is-ready .hero-controls {
 .doc-others__row {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 1rem;
+  gap: clamp(0.85rem, 2vw, 1.25rem);
 }
 
 .doc-other {
-  display: grid;
-  gap: 0.45rem;
+  display: flex;
+  flex-direction: column;
   color: var(--charcoal);
-  transition: transform 0.3s var(--ease);
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 64, 0, 0.08);
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
 }
 
 .doc-other:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 44px rgba(0, 64, 0, 0.12);
 }
 
-.doc-other img {
+.doc-other__photo {
+  aspect-ratio: 1 / 1.05;
+  overflow: hidden;
+  background: #e8dfd2;
+}
+
+.doc-other__photo img {
   width: 100%;
-  aspect-ratio: 1080 / 1260;
+  height: 100%;
   object-fit: cover;
   object-position: center top;
+  transition: transform 0.75s var(--ease-out);
 }
 
-.doc-other span {
+@media (hover: hover) and (pointer: fine) {
+  .doc-other:hover .doc-other__photo img {
+    transform: scale(1.05);
+  }
+}
+
+.doc-other__meta {
+  padding: 0.95rem 1rem 1.15rem;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.doc-other__meta span {
+  font-family: var(--font-display);
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.98rem;
+  color: var(--ink);
+  line-height: 1.25;
 }
 
-.doc-other small {
-  color: var(--muted);
-  font-size: 0.85rem;
+.doc-other__meta small {
+  color: var(--brand);
+  font-size: 0.88rem;
+  font-weight: 600;
 }
 
 .doc-sticky-book {
@@ -2573,10 +2602,6 @@ body.is-ready .hero-controls {
 }
 
 @media (max-width: 520px) {
-  .doc-hero {
-    padding-top: 5rem;
-  }
-
   .doc-book__inner {
     border-radius: 16px;
   }
@@ -2584,6 +2609,10 @@ body.is-ready .hero-controls {
 
 @media (prefers-reduced-motion: reduce) {
   .doc-other:hover {
+    transform: none;
+  }
+
+  .doc-other:hover .doc-other__photo img {
     transform: none;
   }
 }
