@@ -41,12 +41,66 @@
     document.body.classList.toggle("menu-open", !open);
   });
 
+  const closeMobileNav = () => {
+    menuToggle?.setAttribute("aria-expanded", "false");
+    nav?.classList.remove("is-open");
+    headerCta?.classList.remove("is-open");
+    document.body.classList.remove("menu-open");
+  };
+
   nav?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
-      menuToggle?.setAttribute("aria-expanded", "false");
-      nav.classList.remove("is-open");
-      headerCta?.classList.remove("is-open");
-      document.body.classList.remove("menu-open");
+      closeMobileNav();
+      document.querySelectorAll("[data-nav-dropdown].is-open").forEach((dd) => {
+        dd.classList.remove("is-open");
+        const btn = dd.querySelector(".nav-dropdown__toggle");
+        const menu = dd.querySelector(".nav-dropdown__menu");
+        btn?.setAttribute("aria-expanded", "false");
+        menu?.setAttribute("hidden", "");
+      });
+    });
+  });
+
+  /* ---------- Our Doctors dropdown ---------- */
+  document.querySelectorAll("[data-nav-dropdown]").forEach((dropdown) => {
+    const toggle = dropdown.querySelector(".nav-dropdown__toggle");
+    const menu = dropdown.querySelector(".nav-dropdown__menu");
+    if (!toggle || !menu) return;
+
+    const setOpen = (open) => {
+      dropdown.classList.toggle("is-open", open);
+      toggle.setAttribute("aria-expanded", String(open));
+      if (open) menu.removeAttribute("hidden");
+      else menu.setAttribute("hidden", "");
+    };
+
+    toggle.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const willOpen = toggle.getAttribute("aria-expanded") !== "true";
+      document.querySelectorAll("[data-nav-dropdown].is-open").forEach((other) => {
+        if (other === dropdown) return;
+        other.classList.remove("is-open");
+        other.querySelector(".nav-dropdown__toggle")?.setAttribute("aria-expanded", "false");
+        other.querySelector(".nav-dropdown__menu")?.setAttribute("hidden", "");
+      });
+      setOpen(willOpen);
+    });
+  });
+
+  document.addEventListener("click", () => {
+    document.querySelectorAll("[data-nav-dropdown].is-open").forEach((dropdown) => {
+      dropdown.classList.remove("is-open");
+      dropdown.querySelector(".nav-dropdown__toggle")?.setAttribute("aria-expanded", "false");
+      dropdown.querySelector(".nav-dropdown__menu")?.setAttribute("hidden", "");
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key !== "Escape") return;
+    document.querySelectorAll("[data-nav-dropdown].is-open").forEach((dropdown) => {
+      dropdown.classList.remove("is-open");
+      dropdown.querySelector(".nav-dropdown__toggle")?.setAttribute("aria-expanded", "false");
+      dropdown.querySelector(".nav-dropdown__menu")?.setAttribute("hidden", "");
     });
   });
 
