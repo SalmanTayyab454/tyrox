@@ -1291,6 +1291,10 @@ body.is-ready .hero-controls {
   justify-content: center;
 }
 
+.doctor-card__face--back .btn-primary + .btn-primary {
+  margin-top: 0.55rem;
+}
+
 .doctor-arrow {
   width: 46px;
   height: 46px;
@@ -2524,12 +2528,6 @@ body.is-ready .hero-controls {
 
 .page-doctor .whatsapp-float {
   bottom: 1.1rem;
-}
-
-.doctor-card__face--back .doctor-profile-link {
-  margin-top: 0.35rem;
-  margin-bottom: 0.15rem;
-  font-size: 0.92rem;
 }
 
 @media (max-width: 860px) {
