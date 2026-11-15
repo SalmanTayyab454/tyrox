@@ -2375,25 +2375,45 @@ body.is-ready .hero-controls {
 
 .doc-breadcrumbs {
   max-width: 1120px;
-  margin: 0 auto;
-  padding: 4.75rem clamp(1.25rem, 4vw, 3.5rem) 0;
+  margin: 0 auto 0.85rem;
+  padding: 0;
+  line-height: 1.2;
 }
 
 .doc-breadcrumbs ol {
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.35rem 0.5rem;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.25rem;
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 0.88rem;
+  font-size: 0.8rem;
   color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.doc-breadcrumbs li {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
 }
 
 .doc-breadcrumbs li:not(:last-child)::after {
   content: "/";
-  margin-left: 0.5rem;
-  color: rgba(90, 107, 85, 0.55);
+  margin-left: 0.25rem;
+  margin-right: 0.05rem;
+  color: rgba(90, 107, 85, 0.5);
+}
+
+.doc-breadcrumbs li[aria-current="page"] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--charcoal);
+  font-weight: 600;
 }
 
 .doc-breadcrumbs a {
@@ -2405,20 +2425,11 @@ body.is-ready .hero-controls {
   text-decoration: underline;
 }
 
-.doc-breadcrumbs [aria-current="page"] {
-  color: var(--charcoal);
-  font-weight: 600;
-}
-
 .doc-hero {
   position: relative;
   isolation: isolate;
-  padding: 1.25rem clamp(1.25rem, 4vw, 3.5rem) clamp(2.5rem, 5vw, 4rem);
+  padding: 5rem clamp(1.25rem, 4vw, 3.5rem) clamp(2.5rem, 5vw, 4rem);
   overflow: hidden;
-}
-
-.page-doctor .doc-hero {
-  padding-top: 1.25rem;
 }
 
 .doc-hero__bg {
