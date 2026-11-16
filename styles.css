@@ -2614,40 +2614,40 @@ body.is-ready .hero-controls {
   padding: 0.15rem 1rem 0.15rem;
 }
 
-.doc-faq__item summary {
+.doc-faq__q {
+  width: 100%;
   cursor: pointer;
+  font: inherit;
   font-weight: 700;
   color: var(--ink);
+  text-align: left;
   padding: 0.95rem 0;
-  list-style: none;
+  border: 0;
+  background: transparent;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
 }
 
-.doc-faq__item summary::-webkit-details-marker {
-  display: none;
-}
-
-.doc-faq__item summary::after {
+.doc-faq__q::after {
   content: "+";
   font-size: 1.25rem;
   color: var(--forest);
   flex: 0 0 auto;
 }
 
-.doc-faq__item[open] summary::after {
+.doc-faq__q[aria-expanded="true"]::after {
   content: "−";
 }
 
-.doc-faq__item p {
+.doc-faq__a p {
   margin: 0 0 1rem;
   color: var(--charcoal);
   font-size: 0.98rem;
 }
 
-.doc-faq__item a {
+.doc-faq__a a {
   color: var(--forest);
   font-weight: 700;
 }

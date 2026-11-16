@@ -104,6 +104,21 @@
     });
   });
 
+  /* ---------- FAQ: each item toggles independently ---------- */
+  document.querySelectorAll("[data-faq-multi]").forEach((faq) => {
+    faq.querySelectorAll(".doc-faq__q").forEach((button) => {
+      button.addEventListener("click", () => {
+        const expanded = button.getAttribute("aria-expanded") === "true";
+        const panel = button.nextElementSibling;
+        button.setAttribute("aria-expanded", String(!expanded));
+        if (panel) {
+          if (expanded) panel.setAttribute("hidden", "");
+          else panel.removeAttribute("hidden");
+        }
+      });
+    });
+  });
+
   /* ---------- Live Google stats + one-shot counters ---------- */
   const statsSection = document.querySelector("[data-stats-section]");
   let statsReady = false;
