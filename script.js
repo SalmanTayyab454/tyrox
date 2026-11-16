@@ -104,17 +104,21 @@
     });
   });
 
-  /* ---------- FAQ: each item toggles independently ---------- */
+  /* ---------- FAQ: opening one closes the others ---------- */
   document.querySelectorAll("[data-faq-multi]").forEach((faq) => {
-    faq.querySelectorAll(".doc-faq__q").forEach((button) => {
+    const buttons = [...faq.querySelectorAll(".doc-faq__q")];
+    buttons.forEach((button) => {
       button.addEventListener("click", () => {
-        const expanded = button.getAttribute("aria-expanded") === "true";
-        const panel = button.nextElementSibling;
-        button.setAttribute("aria-expanded", String(!expanded));
-        if (panel) {
-          if (expanded) panel.setAttribute("hidden", "");
-          else panel.removeAttribute("hidden");
-        }
+        const wasOpen = button.getAttribute("aria-expanded") === "true";
+        buttons.forEach((other) => {
+          const panel = other.nextElementSibling;
+          const open = other === button && !wasOpen;
+          other.setAttribute("aria-expanded", String(open));
+          if (panel) {
+            if (open) panel.removeAttribute("hidden");
+            else panel.setAttribute("hidden", "");
+          }
+        });
       });
     });
   });
