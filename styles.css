@@ -2511,24 +2511,22 @@ body.is-ready .hero-controls {
 .doc-badge {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.45rem;
   margin: 0.85rem 0 0;
-  padding: 0.4rem 0.75rem 0.4rem 0.45rem;
+  padding: 0.55rem 0.9rem;
   border-radius: 999px;
-  border: 1px solid rgba(0, 96, 0, 0.18);
-  background: rgba(155, 224, 0, 0.14);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.72);
   color: var(--forest);
-  font-size: 0.86rem;
-  font-weight: 750;
-  letter-spacing: 0.01em;
+  font-size: 0.88rem;
+  font-weight: 700;
   line-height: 1;
 }
 
-.doc-badge__icon {
-  width: 1.15rem;
-  height: 1.15rem;
+.doc-badge svg {
+  width: 15px;
+  height: 15px;
   flex: 0 0 auto;
-  color: var(--forest);
 }
 
 .doc-hero__lede {
