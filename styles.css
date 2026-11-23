@@ -2508,11 +2508,40 @@ body.is-ready .hero-controls {
   font-size: 0.95rem;
 }
 
+.doc-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.85rem 0 0;
+  padding: 0.4rem 0.75rem 0.4rem 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 96, 0, 0.18);
+  background: rgba(155, 224, 0, 0.14);
+  color: var(--forest);
+  font-size: 0.86rem;
+  font-weight: 750;
+  letter-spacing: 0.01em;
+  line-height: 1;
+}
+
+.doc-badge__icon {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: 0 0 auto;
+  color: var(--forest);
+}
+
 .doc-hero__lede {
   margin: 1.15rem 0 0;
   max-width: 38ch;
   color: var(--charcoal);
   font-size: 1.05rem;
+}
+
+@media (max-width: 860px) {
+  .doc-hero__copy .doc-badge {
+    margin-inline: auto;
+  }
 }
 
 .doc-hero__actions {
