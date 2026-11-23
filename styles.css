@@ -2737,10 +2737,10 @@ body.is-ready .hero-controls {
 .doc-creds li::before {
   content: "";
   display: inline-block;
-  width: 1.35rem;
-  height: 1.35rem;
+  width: 16px;
+  height: 16px;
   flex: 0 0 auto;
-  margin-top: 0.05rem;
+  margin-top: 0.2rem;
   background: var(--mark-icon);
 }
 
