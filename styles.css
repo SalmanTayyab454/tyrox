@@ -2726,8 +2726,9 @@ body.is-ready .hero-controls {
 
 .doc-focus__block li,
 .doc-creds li {
-  position: relative;
-  padding-left: 1.15rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
   color: var(--charcoal);
   font-size: 0.98rem;
 }
@@ -2735,14 +2736,12 @@ body.is-ready .hero-controls {
 .doc-focus__block li::before,
 .doc-creds li::before {
   content: "";
-  position: absolute;
-  left: 0;
-  top: 0.55em;
-  width: 0.4rem;
-  height: 0.4rem;
-  border-radius: 1px;
-  background: var(--lime-deep);
-  transform: rotate(45deg);
+  display: inline-block;
+  width: 1.35rem;
+  height: 1.35rem;
+  flex: 0 0 auto;
+  margin-top: 0.05rem;
+  background: var(--mark-icon);
 }
 
 .doc-book {
