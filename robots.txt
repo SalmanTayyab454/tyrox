@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
 
+User-agent: Bingbot
+Allow: /
+
 User-agent: GPTBot
 Allow: /
 
@@ -14,9 +17,6 @@ User-agent: ClaudeBot
 Allow: /
 
 User-agent: Google-Extended
-Allow: /
-
-User-agent: Bingbot
 Allow: /
 
 Sitemap: https://tyrox.net/sitemap.xml
