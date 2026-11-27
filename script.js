@@ -16,10 +16,18 @@
         revealObserver.unobserve(el);
       });
     },
-    { threshold: 0.14, rootMargin: "0px 0px -6% 0px" }
+    /* Avoid a large bottom rootMargin — short last sections (esp. footer) never
+       intersect on tall 27–32" viewports and stay invisible forever. */
+    { threshold: 0.06, rootMargin: "0px 0px -24px 0px" }
   );
 
-  document.querySelectorAll("[data-reveal]").forEach((el) => revealObserver.observe(el));
+  document.querySelectorAll("[data-reveal]").forEach((el) => {
+    if (el.classList.contains("footer")) {
+      el.classList.add("is-visible");
+      return;
+    }
+    revealObserver.observe(el);
+  });
 
   /* ---------- Sticky header ---------- */
   const topbar = document.querySelector(".topbar");

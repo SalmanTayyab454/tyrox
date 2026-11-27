@@ -1891,6 +1891,15 @@ body.is-ready .hero-controls {
 }
 
 /* ---------- Footer ---------- */
+.footer,
+.footer[data-reveal] {
+  /* Never hide behind scroll-reveal — on tall monitors the footer sits in the
+     observer’s bottom dead zone and would stay opacity:0 / translateY forever */
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
 .footer {
   display: grid;
   grid-template-columns: 1fr;
